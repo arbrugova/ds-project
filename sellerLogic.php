@@ -1,12 +1,10 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 
 require_once "db_conn.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // Check if 'title' key exists in the $_POST array
-    if (isset($_POST['title'])) {
         $id = $_SESSION['user_id'];
         $title = $_POST['title'];
         $education = $_POST['education'];
@@ -28,9 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Error occurred during registration (location).";
         }
-    } else {
-        echo "Missing 'title' in the POST data.";
-    }
 } else {
     echo "Error occurred during registration (user).";
 }
