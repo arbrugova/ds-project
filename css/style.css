@@ -1,0 +1,200 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+/*----------Navbar--------*/
+.navbar {
+  position: absolute;
+  top: 1%;
+  left: 1%;
+  width: 98%;
+  height: 70px;
+  background-color: #fff;
+  margin: 0 auto;
+  border-radius: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  text-decoration: none;
+  color: #2b2d6c;
+  float: left;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+.navbar-nav {
+  float: right;
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+.navbar-nav li {
+  list-style: none;
+}
+.navbar-nav li a {
+  font-size: 20px;
+  padding: 0 15px;
+  text-decoration: none;
+  list-style-type: none;
+  color: #2b2d6c;
+}
+.navbar li button {
+  background-color: #2b2d6c;
+  width: 100px;
+  height: 45px;
+  border-radius: 20px;
+  border: none;
+}
+.navbar li button a {
+  color: white;
+  font-size: 17px;
+}
+/*----------------------Home page---------------------*/
+
+/*----------Hero--------*/
+.hero {
+  height: 100vh;
+  background-image: url(../img/hero-img.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero-txt {
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  background-color: #fff;
+  opacity: 95%;
+  width: 700px;
+  height: 330px;
+  border-radius: 27px;
+  text-align: left;
+}
+.hero-txt h1 {
+  top: -10px;
+  left: 20px;
+  position: absolute;
+  font-size: 50px;
+  font-weight: bold;
+  color: #2b2d6c;
+}
+.hero-txt p {
+  position: absolute;
+  top: 55px;
+  left: 20px;
+  font-size: 30px;
+  color: #0593f9;
+}
+.hero-txt form {
+  position: absolute;
+  top: 70%;
+  left: 20px;
+}
+.hero-txt form input {
+  width: 650px;
+  height: 55px;
+  border: 2px #0593f9 solid;
+  border-radius: 20px;
+}
+.hero-txt form input::placeholder {
+  color: #a6a6a6;
+  font-size: 25px;
+  padding-left: 20px;
+}
+/*-----------------Login form---------------*/
+.login {
+  height: 100vh;
+  background-image: url(../img/hero-img.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  background-color: #fff;
+  text-align: left;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+.container h2 {
+  align-self: flex-start;
+  font-size: 40px;
+  color: #2b2d6c;
+  padding-left: 40px;
+}
+.container form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.container form input {
+  width: 400px;
+  height: 50px;
+  margin: 17px 40px;
+  border-radius: 15px;
+  border: none;
+  background-color: #d9d9d9;
+}
+.container form input::placeholder {
+  font-size: 24px;
+  color: #2b2d6c;
+  padding-left: 20px;
+}
+.container form button {
+  border: none;
+  background-color: #2b2d6c;
+  color: #fff;
+  width: 180px;
+  height: 60px;
+  border-radius: 50px;
+  font-size: 25px;
+}
+.container p {
+  font-size: 23px;
+  margin-top: 30px;
+}
+.container button {
+  border: none;
+  background-color: #0593f9;
+  color: #fff;
+  width: 160px;
+  height: 55px;
+  border-radius: 50px;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+.container button a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*----------Sign up----------*/
+.container form .file-input {
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+}
+input[type="file"]::file-selector-button {
+  margin: 9px 30px 0 5px;
+  border: none;
+  background: #084cdf;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: #0d45a5;
+}

@@ -24,48 +24,57 @@ if ($userRole == 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+    <section class="login">
+        <!-----------Navbar-->
+        <nav class="navbar">
+  <a href="#" class="navbar-brand">Kosova freelance</a>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a href="#" class="nav-link">Explore</a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link">Become a seller</a>
+    </li>
+    <li class="nav-item">
+      <a href="login.php" class="nav-link">Sign in</a>
+    </li>
+    <li class="nav-item">
+      <button>
+      <a href="signup.php" class="nav-link">Join</a>
+    </button>
+    </li>
+  </ul>
+</nav>
+<!-----------------Sign up form-------------->
 <div class="container">
     <h2>Sign Up</h2>
     <form action="signup_logic.php" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="signupUsername">Username</label>
-            <input type="text" id="signupUsername" name="signupUsername" required>
-        </div>
-        <div class="form-group">
-            <label for="signupEmail">Email</label>
-            <input type="email" id="signupEmail" name="signupEmail" required>
-        </div>
-        <div class="form-group">
-            <label for="signupPassword">Password</label>
-            <input type="password" id="signupPassword" name="signupPassword" required>
-        </div>
-        <div class="form-group">
-            <label for="signupProfilePic">Profile Picture</label>
-            <input type="file" id="signupProfilePic" name="signupProfilePic">
-        </div>
+        <input type="text" id="signupUsername" name="signupUsername" required placeholder="Username">
+        <input type="email" id="signupEmail" name="signupEmail" required placeholder="Email">
+        <input type="password" id="signupPassword" name="signupPassword" required placeholder="Password">
+        <label for="signupProfilePic">Profile Picture</label>
+        <input class="file-input"type="file" id="signupProfilePic" name="signupProfilePic">
         
-        <div class="form-group">
-            <label for="signupLocation">Location</label>
-            <select id="signupLocation" name="signupLocation">
-                <option value="north">North</option>
-                <option value="south">South</option>
-                
-            </select>
-        </div>
+        <label for="signupLocation">Location</label>
+        <select id="signupLocation" name="signupLocation">
+            <option value="north">North</option>
+            <option value="south">South</option>
+        </select>
        
-        
-        <div class="form-group">
-    <label for="signupUserRole">Choose User Role</label>
-    <select id="signupUserRole" name="signupUserRole">
-        <option value="user">I'm hunting</option>
-        <option value="hiring">I'm hiring</option>
-    </select>
-</div>
-
+        <label for="signupUserRole">Choose User Role</label>
+        <select id="signupUserRole" name="signupUserRole">
+            <option value="user">I'm hunting</option>
+            <option value="hiring">I'm hiring</option>
+        </select>
         <button type="submit">Sign Up</button>
     </form>
+
+    <p>Have an account?</p>
+    <button><a href="">Log in</a></button>
+    </section>
 </div>
 </body>
 </html>
