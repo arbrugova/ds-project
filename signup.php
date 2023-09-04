@@ -30,10 +30,10 @@ if ($userRole == 'admin') {
     <section class="login">
         <!-----------Navbar-->
         <nav class="navbar">
-  <a href="#" class="navbar-brand">Kosova freelance</a>
+  <a href="index.php" class="navbar-brand">Kosova freelance</a>
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a href="#" class="nav-link">Explore</a>
+      <a href="explore.php" class="nav-link">Explore</a>
     </li>
     <li class="nav-item">
       <a href="#" class="nav-link">Become a seller</a>
@@ -57,11 +57,12 @@ if ($userRole == 'admin') {
         <input type="password" id="signupPassword" name="signupPassword" required placeholder="Password">
         <label for="signupProfilePic">Profile Picture</label>
         <input class="file-input"type="file" id="signupProfilePic" name="signupProfilePic">
-        
         <label for="signupLocation">Location</label>
         <select id="signupLocation" name="signupLocation">
-            <option value="north">North</option>
-            <option value="south">South</option>
+            <option value="pristina">Pristina</option>
+            <option value="prizren">Prizren</option>
+            <option value="gjilan">Gjilan</option>
+            <option value="peja">Peja</option>
         </select>
        
         <label for="signupUserRole">Choose User Role</label>
@@ -73,7 +74,7 @@ if ($userRole == 'admin') {
     </form>
 
     <p>Have an account?</p>
-    <button><a href="">Log in</a></button>
+    <button><a href="login.php">Log in</a></button>
     </section>
 </div>
 </body>

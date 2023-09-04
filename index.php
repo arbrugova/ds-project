@@ -11,10 +11,10 @@ session_start(); ?>
 <body>
   <section class="hero">
 <nav class="navbar">
-  <a href="#" class="navbar-brand">Kosova freelance</a>
+  <a href="index.php" class="navbar-brand">Kosova freelance</a>
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a href="#" class="nav-link">Explore</a>
+      <a href="explore.php" class="nav-link">Explore</a>
     </li>
     <li class="nav-item">
       <a href="seller.php" class="nav-link">Become a seller</a>
