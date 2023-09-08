@@ -31,8 +31,14 @@ if (isset($_GET['user_id'])) {
         $is_own_profile = false;
         $profile_data = getUserData($profile_user_id, $db);
     }
+    
+    if (!$profile_data) {
+        echo "Profile not found.";
+        exit;
+    }
 } else {
-    echo "No profile to display";
+    echo "No profile to display.";
+    exit;
 }
 ?>
 
@@ -55,6 +61,9 @@ if (isset($_GET['user_id'])) {
       <a href="seller.php" class="nav-link">Become a seller</a>
     </li>
     <?php if(isset($_SESSION['user_id'])){?>
+      <li class="nav-item">
+      <a href="profile.php?user_id=<?php echo $_SESSION['user_id']?>" class="nav-link">Profile</a>
+    </li>
     <li class="nav-item">
       <button>
       <a href="logout.php" class="nav-link">Log out</a>
@@ -82,7 +91,7 @@ if (isset($_GET['user_id'])) {
             <span>Rating: <?php echo $profile_data['rating']; ?></span>
         </div>-->
         <?php if ($is_own_profile) { ?>
-            <a href="#" class="edit-button">Edit Profile</a>
+            <a href="editProfile.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="edit-button">Edit Profile</a>
         <?php } ?>
         <div class="social-media">
             <a href="#" target="_blank">Facebook</a>
