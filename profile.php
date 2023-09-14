@@ -2,6 +2,18 @@
 session_start();
 require_once "db_conn.php";
 
+function getJobListingsByUserId($user_id, $db) {
+    $query = $db->prepare('SELECT * FROM job_listing WHERE creator_id = :user_id');
+    $query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+
+    if ($query->execute()) {
+        $job_listings = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $job_listings;
+    }
+
+    return false;
+}
+
 function getUserData($user_id, $db) {
     $query = $db->prepare('SELECT u.username, u.email, p.bio FROM users AS u LEFT JOIN seller AS p ON u.id = p.id WHERE u.id = :user_id');
     $query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
@@ -27,11 +39,13 @@ if (isset($_GET['user_id'])) {
     if ($profile_user_id == $user_id) {
         $is_own_profile = true;
         $profile_data = getUserData($user_id, $db);
+        $job_listings = getJobListingsByUserId($user_id, $db); // Fetch job listings for the user's own profile
     } else {
         $is_own_profile = false;
         $profile_data = getUserData($profile_user_id, $db);
+        $job_listings = getJobListingsByUserId($profile_user_id, $db); // Fetch job listings for the other user's profile
     }
-    
+
     if (!$profile_data) {
         echo "Profile not found.";
         exit;
@@ -101,8 +115,21 @@ if (isset($_GET['user_id'])) {
         </div>
     </div>
     <div class="recent-listings">
-        <h2>Recent Listings</h2>
-    </div>
+    <h2>Recent Listings</h2>
+    <ul class="job-listings">
+        <?php foreach ($job_listings as $listing) { ?>
+            <li class="job-listing">
+                <h3><?php echo $listing['title']; ?></h3>
+                <p><?php echo $listing['description']; ?></p>
+                <p>Category: <?php echo $listing['category']; ?></p>
+                <p>Location: <?php echo $listing['location']; ?></p>
+                <p>Salary: $<?php echo number_format($listing['salary'], 2); ?></p>
+                <p>Status: <?php echo $listing['status']; ?></p>
+                <p>Deadline: <?php echo $listing['deadline']; ?></p>
+            </li>
+        <?php } ?>
+    </ul>
+</div>
 </section>
 </body>
 </html>
