@@ -15,7 +15,7 @@ function getJobListingsByUserId($user_id, $db) {
 }
 
 function getUserData($user_id, $db) {
-    $query = $db->prepare('SELECT u.username, u.email, u.profile_picture,p.bio FROM users AS u LEFT JOIN seller AS p ON u.id = p.id WHERE u.id = :user_id');
+    $query = $db->prepare('SELECT u.username, u.email, u.profile_picture, s.position, s.education, s.degree, s.rate, s.bio FROM users AS u LEFT JOIN seller AS s ON u.id = s.id WHERE u.id = :user_id');
     $query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 
     if ($query->execute()) {
@@ -26,10 +26,21 @@ function getUserData($user_id, $db) {
     return false;
 }
 
+// Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
+
+// Assuming you have the user's ID, e.g., from the session
+$user_id = $_SESSION['user_id'];
+
+// Fetch user data
+$userData = getUserData($user_id, $db);
+
+// Fetch job listings
+$job_listings = getJobListingsByUserId($user_id, $db);
+
 
 $user_id = $_SESSION['user_id'];
 $profile_data = getUserData($user_id, $db);
@@ -46,39 +57,45 @@ $job_listings = getJobListingsByUserId($user_id, $db);
 </head>
     <body>
         <section class="user-dashboard">
-    <nav class="navbar">
-    <a href="index.php" class="navbar-brand">Kosova freelance</a>
-    <ul class="navbar-nav">
-        <li class="nav-item">
-        <a href="explore.php" class="nav-link">Explore</a>
-        </li>
-        <li class="nav-item">
-        <a href="seller.php" class="nav-link">Become a seller</a>
-        </li>
-        <?php if(isset($_SESSION['user_id'])){?>
-        <li class="nav-item">
-        <a href="profile.php?user_id=<?php echo $_SESSION['user_id']?>" class="nav-link">Profile</a>
-        </li>
-        <li class="nav-item">
-        <button>
-        <a href="logout.php" class="nav-link">Log out</a>
-        </button>
-        </li>
-        <?php }else { ?>
-        <li class="nav-item">
-        <a href="login.php" class="nav-link">Sign in</a>
-        </li>
-        <li class="nav-item">
-        <button>
-        <a href="signup.php" class="nav-link">Join</a>
-        </button>
-        </li>
-        <?php } ?>
-    </ul>
-    </nav>
+        <nav class="navbar">
+            <a href="index.php" class="navbar-brand">Kosova freelance</a>
+            <ul class="navbar-nav">
+                <li>
+                <a href="explore.php" class="nav-link">Explore</a>
+                </li>
+                <?php if(isset($_SESSION['seller-id'])){ ?>
+                    <li>
+                        <button style="background-color: #007bff; width: 180px; padding-right:10px;">
+                            <a href="user_dashboard.php" class="nav-link">User Dashboard</a>
+                        </button>
+                    </li>
+                <?php } else { ?>
+                    <li>
+                        <a href="seller.php" class="nav-link">Become a seller</a>
+                    </li>
+                <?php } ?>
+
+                <?php if(isset($_SESSION['user_id'])){ ?>
+                    <li>
+                        <button>
+                            <a href="logout.php" class="nav-link">Log out</a>
+                        </button>
+                    </li>
+                <?php } else { ?>
+                    <li>
+                        <a href="login.php" class="nav-link">Sign in</a>
+                    </li>
+                    <li>
+                        <button>
+                         <a href="signup.php" class="nav-link">Join</a>
+                        </button>
+                    </li>
+                <?php } ?>
+            </ul>
+        </nav>
     <section class="dashboard-section">
         <div class="dashboard-sidebar">
-            <!-- Profile Picture and User Info -->
+            <!---- Profile Picture and User Info ---->
                 <img class="profile-picture" src="<?php echo $profile_data['profile_picture']?>"/>
             <div class="profile-info">
                 <h2><?php echo $profile_data['username']; ?></h2>
@@ -90,7 +107,17 @@ $job_listings = getJobListingsByUserId($user_id, $db);
                     <a href="#" target="_blank">LinkedIn</a>
                     <a href="#" target="_blank">Instagram</a>
                 </div>
-                <button><a href="editProfile.php">Edit Profile</a></button>
+                <!--------Education section-------->
+                <?php if(isset($profile_data['education'])){ ?>
+                <div class="user-education">
+                    <h1>Education</h1>
+                    <p>Univseristy:<?php echo $profile_data['education']?></p>
+                    <p>Degree:<?php echo $profile_data['degree']?></p>
+                    <p>Skills:</p>
+                </div>
+                <p>Rate</p>
+                <?php } ?>
+                <button class="edit-profile-btn"><a href="editProfile.php">Edit Profile</a></button>
             </div>
         </div>
         <div class="dashboard-content">
@@ -113,6 +140,8 @@ $job_listings = getJobListingsByUserId($user_id, $db);
                                 <p class="location">Location: <?php echo $listing['location']; ?></p>
                                 <p class="salary">Salary: $<?php echo number_format($listing['salary'], 2); ?></p>
                                 <p class="status">Status: <?php echo $listing['status']; ?></p>
+                                <button class="delete-btn"><a href="delete-job.php?<?php echo $listing['job_id'];?>">Delete</a></button>
+                                <button class="edit-btn"><a href="edit-job.php?<?php echo $listing['job_id'];?>">Edit</a></button>
                                 <p class="deadline">Deadline: <?php echo $listing['deadline']; ?></p>
                             </li>
                         <?php } ?>
