@@ -29,25 +29,35 @@
         <h2>Edit Profile</h2>
         <form action="editProfileLogic.php" method="post">
             <div class="form-group">
-                <label for="editUsername">Username:</label>
                 <input type="text" id="editUsername" name="editUsername" placeholder="Your new username">
             </div>
             <div class="form-group">
-                <label for="editEmail">Email:</label>
                 <input type="email" id="editEmail" name="editEmail" placeholder="Your new email">
             </div>
             <div class="form-group">
-                <label for="editBio">Bio:</label>
                 <textarea id="editBio" name="editBio" rows="4" placeholder="Your new bio"></textarea>
             </div>
             <div class="form-group">
-                <label for="editBio">Bio:</label>
                 <input id="editPassword" name="editPassword" type="password" placeholder="New Password"></input>
                 <input id="editRetypePassword" name="editRetypePassword" type="password" placeholder="Re-type new password"></input>
             </div>
             <button type="submit">Save Changes</button>
         </form>
     </div>
+    <div class="container">
+        <h2>Edit Education</h2>
+        <form action="editSellerLogic.php" method="post">
+                <input type="text" id="editUsername" name="editUsername" placeholder="Education">
+
+                <select id="degree" name="degree">
+                    <option value="bachelor">Bachelor</option>
+                    <option value="master">Master</option>
+                    <option value="phd">Phd</option>
+                 </select>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+    
 </section>
 </body>
 </html>
