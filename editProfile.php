@@ -47,8 +47,8 @@
     <div class="container">
         <h2>Edit Education</h2>
         <form action="editSellerLogic.php" method="post">
-                <input type="text" id="editUsername" name="editUsername" placeholder="Education">
-
+        <input type="text" id="education" name="education" placeholder="Education">
+        
                 <select id="degree" name="degree">
                     <option value="bachelor">Bachelor</option>
                     <option value="master">Master</option>
