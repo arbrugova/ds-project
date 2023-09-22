@@ -93,7 +93,8 @@ $job_listings = getJobListingsByUserId($user_id, $db);
                 <?php } ?>
             </ul>
         </nav>
-    <section class="dashboard-section">
+        <a href="createListing.php" class="createListing-btn">Create Listing</a>
+        <section class="dashboard-section">
         <div class="dashboard-sidebar">
             <!---- Profile Picture and User Info ---->
                 <img class="profile-picture" src="<?php echo $profile_data['profile_picture']?>"/>
@@ -140,8 +141,8 @@ $job_listings = getJobListingsByUserId($user_id, $db);
                                 <p class="location">Location: <?php echo $listing['location']; ?></p>
                                 <p class="salary">Salary: $<?php echo number_format($listing['salary'], 2); ?></p>
                                 <p class="status">Status: <?php echo $listing['status']; ?></p>
-                                <button class="delete-btn"><a href="delete-job.php?<?php echo $listing['job_id'];?>">Delete</a></button>
-                                <button class="edit-btn"><a href="edit-job.php?<?php echo $listing['job_id'];?>">Edit</a></button>
+                                <button class="delete-btn"><a href="deleteListing.php?job_id=<?php echo $listing['job_id'];?>">Delete</a></button>
+                                <button class="edit-btn"><a href="editListing.php?job_id=<?php echo $listing['job_id'];?>">Edit</a></button>
                                 <p class="deadline">Deadline: <?php echo $listing['deadline']; ?></p>
                             </li>
                         <?php } ?>
